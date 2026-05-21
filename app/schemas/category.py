@@ -10,7 +10,8 @@ class CategoryBase(BaseModel):
 
 
 class CategoryCreate(CategoryBase):
-    name: str | None = Field(None, min_length=1, max_length=100)
+    # DB requires a non-null name, so create payload must provide one.
+    name: str = Field(..., min_length=1, max_length=100)
 
 
 class CategoryUpdate(BaseModel):
